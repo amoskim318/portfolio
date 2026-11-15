@@ -1,0 +1,1576 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Amos Kimunya — cybersecurity and network security portfolio. Practical labs, projects, and technical learning." />
+  <meta name="theme-color" content="#0b0715" />
+  <title>Amos Kimunya | Cybersecurity Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0715;
+      --bg-soft: #140d22;
+      --card: rgba(25,15,42,.82);
+      --line: rgba(183,120,255,.20);
+      --text: #f3edff;
+      --muted: #b5a8c9;
+      --accent: #c084fc;
+      --accent-2: #a78bfa;
+      --shadow: 0 18px 70px rgba(0,0,0,.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(168,85,247,.13), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(124,58,237,.12), transparent 28%),
+        var(--bg);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(192,132,252,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,132,252,.045) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(11,7,21,.78);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: .25s;
+    }
+
+    nav.scrolled {
+      border-color: var(--line);
+      background: rgba(11,7,21,.94);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font: 700 1.05rem "JetBrains Mono", monospace;
+      letter-spacing: .5px;
+      color: var(--accent);
+    }
+
+    .logo span {
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: var(--text);
+      font-size: 1.55rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    header {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 118px 0 72px;
+      position: relative;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--accent);
+      font: .9rem "JetBrains Mono", monospace;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(3.3rem, 8vw, 6.7rem);
+      line-height: .96;
+      margin: 0;
+      letter-spacing: -.055em;
+    }
+
+    .outline {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(243,237,255,.62);
+    }
+
+    .hero-role {
+      font: clamp(1rem, 2vw, 1.25rem) "JetBrains Mono", monospace;
+      color: var(--accent-2);
+      margin: 24px 0 16px;
+      min-height: 1.8em;
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 690px;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: .92rem;
+      border: 1px solid var(--line);
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #210d38;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(192,132,252,.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.025);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(192,132,252,.55);
+      color: var(--accent);
+    }
+
+    /* SOCIAL LINKS */
+
+    .socials {
+      display: flex;
+      gap: 15px;
+      margin-top: 24px;
+    }
+
+    .socials a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font: .75rem "JetBrains Mono", monospace;
+      transition: .2s;
+    }
+
+    .socials a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* TERMINAL */
+
+    .terminal {
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(39,22,62,.96), rgba(13,8,24,.96));
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transform: rotate(1.5deg);
+    }
+
+    .terminal-top {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #55436d;
+    }
+
+    .dot:nth-child(2) {
+      background: #80649d;
+    }
+
+    .dot:nth-child(3) {
+      background: var(--accent);
+    }
+
+    .terminal-body {
+      padding: 24px;
+      font: 500 .84rem/1.85 "JetBrains Mono", monospace;
+      color: #d6c5ef;
+      min-height: 315px;
+    }
+
+    .cmd {
+      color: var(--accent);
+    }
+
+    .blue {
+      color: var(--accent-2);
+    }
+
+    .dim {
+      color: #9b88b8;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: var(--accent);
+      vertical-align: -2px;
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 96px 0;
+      scroll-margin-top: 68px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      font: 600 .82rem "JetBrains Mono", monospace;
+      color: var(--accent);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -.045em;
+      line-height: 1.05;
+      margin: 8px 0 0;
+    }
+
+    .section-number {
+      font: 500 4.2rem/1 "JetBrains Mono", monospace;
+      color: rgba(192,132,252,.08);
+      user-select: none;
+    }
+
+    .divider {
+      border-top: 1px solid var(--line);
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-copy p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .quick-card {
+      padding: 20px;
+      border-radius: 13px;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+
+    .quick-card strong {
+      display: block;
+      color: var(--accent);
+      font: 700 1.05rem "JetBrains Mono", monospace;
+      margin-bottom: 5px;
+    }
+
+    .quick-card span {
+      font-size: .86rem;
+      color: var(--muted);
+    }
+
+    /* SKILLS */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      padding: 24px;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      transition: .2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(192,132,252,.42);
+    }
+
+    .skill-card h3 {
+      margin: 0 0 15px;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.025);
+      border-radius: 7px;
+      color: #d6c5ef;
+      font: 500 .78rem "JetBrains Mono", monospace;
+    }
+
+    /* PROJECTS */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      position: relative;
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: .25s;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -65% 30%;
+      height: 180px;
+      background: radial-gradient(circle, rgba(192,132,252,.15), transparent 60%);
+      pointer-events: none;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(192,132,252,.48);
+    }
+
+    .project-meta {
+      font: 500 .75rem "JetBrains Mono", monospace;
+      color: var(--accent-2);
+      margin-bottom: 11px;
+    }
+
+    .project h3 {
+      font-size: 1.3rem;
+      line-height: 1.35;
+      margin: 0 0 12px;
+    }
+
+    .project p {
+      font-size: .92rem;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+
+    .project ul {
+      margin: 0 0 18px;
+      padding-left: 19px;
+      color: #d0c2e4;
+      font-size: .86rem;
+    }
+
+    .project li + li {
+      margin-top: 6px;
+    }
+
+    /* EDUCATION */
+
+    .timeline {
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 28px 24px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -25px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(192,132,252,.09);
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-date {
+      font: 500 .76rem "JetBrains Mono", monospace;
+      color: var(--accent-2);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.02rem;
+      margin: 5px 0 2px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* DEVELOPMENT */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .list-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .list-card h3 {
+      margin: 0 0 16px;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .clean-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .clean-list li {
+      position: relative;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .clean-list li + li {
+      margin-top: 12px;
+    }
+
+    .clean-list li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* CONTACT */
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .contact-copy p {
+      color: var(--muted);
+      max-width: 620px;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 15px 16px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.02);
+      color: #d6c5ef;
+      font-size: .9rem;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(192,132,252,.48);
+      color: var(--accent);
+    }
+
+    form {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+    }
+
+    label {
+      display: block;
+      color: #d6c5ef;
+      font-size: .78rem;
+      margin-bottom: 6px;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #10091c;
+      color: var(--text);
+      outline: none;
+      margin-bottom: 14px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: rgba(192,132,252,.65);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 30px 0 36px;
+      border-top: 1px solid var(--line);
+      color: #9b88b8;
+      font: 400 .78rem "JetBrains Mono", monospace;
+      text-align: center;
+    }
+
+    /* REVEAL ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px) {
+      .hero,
+      .about-grid,
+      .contact-wrap,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        gap: 42px;
+      }
+
+      .terminal {
+        max-width: 630px;
+        transform: none;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .section-number {
+        display: none;
+      }
+    }
+
+    @media(max-width:680px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        left: 14px;
+        right: 14px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+        background: #160d25;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .skills-grid,
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        margin-bottom: 28px;
+      }
+
+      section {
+        padding: 78px 0;
+      }
+
+      .contact-link {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">&lt;AK<span>/</span>&gt;</a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#growth">Growth</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <header id="home">
+    <div class="container hero">
+
+      <div class="reveal show">
+        <div class="eyebrow">Hello, I am</div>
+
+        <h1>
+          Amos
+          <span class="outline">Kimunya.</span>
+        </h1>
+
+        <div class="hero-role">
+          <span id="typedText"></span><span class="cursor"></span>
+        </div>
+
+        <p class="hero-copy">
+          I am building practical skills in cybersecurity, with a strong focus on computer networks, Linux systems and network security. I learn by setting up labs, analysing traffic, documenting findings and working through hands-on projects.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View My Projects →</a>
+          <a class="btn btn-secondary" href="mailto:amoskim028@gmail.com">Contact Me</a>
+        </div>
+
+        <!-- SOCIAL MEDIA LINKS -->
+
+        <div class="socials" aria-label="Social links">
+
+          <a href="https://github.com/amoskim318"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="GitHub">GH</a>
+
+          <a href="https://www.linkedin.com/in/amos-kimunya-4287543bb/"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="LinkedIn">in</a>
+
+          <a href="https://www.facebook.com/profile.php?id=61591694542061"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="Facebook">f</a>
+
+          <a href="mailto:amoskim028@gmail.com"
+             title="Email">@</a>
+
+        </div>
+      </div>
+
+      <!-- TERMINAL CARD -->
+
+      <div class="terminal reveal" aria-label="Terminal profile card">
+
+        <div class="terminal-top">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+
+        <div class="terminal-body">
+
+          <div>
+            <span class="cmd">amos@portfolio</span>:<span class="blue">~</span>$ whoami
+          </div>
+
+          <div class="dim">Cybersecurity Learner</div>
+          <br>
+
+          <div>
+            <span class="cmd">amos@portfolio</span>:<span class="blue">~</span>$ focus --list
+          </div>
+
+          <div>→ Network Security</div>
+          <div>→ Linux & Kali Linux</div>
+          <div>→ Network Traffic Analysis</div>
+          <br>
+
+          <div>
+            <span class="cmd">amos@portfolio</span>:<span class="blue">~</span>$ status
+          </div>
+
+          <div class="dim">learning • building • documenting</div>
+          <br>
+
+          <div>
+            <span class="cmd">amos@portfolio</span>:<span class="blue">~</span>$ <span class="cursor"></span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ABOUT -->
+
+    <section id="about" class="divider">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">01 / About</div>
+            <h2>Curiosity backed by<br>hands-on practice.</h2>
+          </div>
+          <div class="section-number">01</div>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-copy reveal">
+
+            <p>
+              I am an aspiring cybersecurity practitioner focused on network security. My interest started with understanding how devices communicate, how networks are protected and how security weaknesses can be identified and investigated responsibly.
+            </p>
+
+            <p>
+              I use a Kali Linux environment and practical labs to build experience with network discovery, packet analysis, Linux administration, defensive monitoring and security testing. I value understanding what the traffic is doing—not just running a tool and accepting its output.
+            </p>
+
+            <p>
+              I am a participant in AfricaHackon Cohort 7 and continue to develop my skills through structured exercises, independent projects and technical documentation.
+            </p>
+
+          </div>
+
+          <div class="quick-grid reveal">
+
+            <div class="quick-card">
+              <strong>Network Security</strong>
+              <span>Primary area of focus</span>
+            </div>
+
+            <div class="quick-card">
+              <strong>Kali Linux</strong>
+              <span>Practical lab environment</span>
+            </div>
+
+            <div class="quick-card">
+              <strong>AfricaHackon</strong>
+              <span>Cohort 7 participant</span>
+            </div>
+
+            <div class="quick-card">
+              <strong>Hands-on</strong>
+              <span>Labs, analysis & documentation</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">02 / Skills</div>
+            <h2>My technical toolkit.</h2>
+          </div>
+          <div class="section-number">02</div>
+        </div>
+
+        <div class="skills-grid">
+
+          <div class="skill-card reveal">
+            <h3>Network Engineering</h3>
+            <div class="tags">
+              <span class="tag">TCP/IP</span>
+              <span class="tag">OSI Model</span>
+              <span class="tag">IPv4</span>
+              <span class="tag">Subnetting</span>
+              <span class="tag">Routing</span>
+              <span class="tag">DNS</span>
+              <span class="tag">DHCP</span>
+              <span class="tag">ARP</span>
+              <span class="tag">ICMP</span>
+              <span class="tag">NAT</span>
+              <span class="tag">HTTP/S</span>
+              <span class="tag">SMB</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Packet & Protocol Analysis</h3>
+            <div class="tags">
+              <span class="tag">Wireshark</span>
+              <span class="tag">tcpdump</span>
+              <span class="tag">Display Filters</span>
+              <span class="tag">Capture Filters</span>
+              <span class="tag">TCP Streams</span>
+              <span class="tag">Packet Inspection</span>
+              <span class="tag">Traffic Troubleshooting</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Network Security</h3>
+            <div class="tags">
+              <span class="tag">Nmap</span>
+              <span class="tag">Service Enumeration</span>
+              <span class="tag">Firewall Rules</span>
+              <span class="tag">UFW</span>
+              <span class="tag">Snort</span>
+              <span class="tag">ARP Spoofing Concepts</span>
+              <span class="tag">Proxy Headers</span>
+              <span class="tag">VPN Traffic Analysis</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Windows & Identity Security</h3>
+            <div class="tags">
+              <span class="tag">Active Directory</span>
+              <span class="tag">NTLM</span>
+              <span class="tag">SMB</span>
+              <span class="tag">Responder</span>
+              <span class="tag">Pass-the-Hash Concepts</span>
+              <span class="tag">Windows Accounts</span>
+              <span class="tag">Wireshark Analysis</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Linux & Systems Administration</h3>
+            <div class="tags">
+              <span class="tag">Kali Linux</span>
+              <span class="tag">Bash</span>
+              <span class="tag">systemd</span>
+              <span class="tag">Processes</span>
+              <span class="tag">Services</span>
+              <span class="tag">Permissions</span>
+              <span class="tag">Apache</span>
+              <span class="tag">Networking CLI</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Security Monitoring & Infrastructure</h3>
+            <div class="tags">
+              <span class="tag">Wazuh</span>
+              <span class="tag">Snort</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Log Analysis</span>
+              <span class="tag">Service Monitoring</span>
+              <span class="tag">Containerized Labs</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Reconnaissance & Automation</h3>
+            <div class="tags">
+              <span class="tag">Subfinder</span>
+              <span class="tag">httpx</span>
+              <span class="tag">Nmap</span>
+              <span class="tag">Python</span>
+              <span class="tag">Bash</span>
+              <span class="tag">curl</span>
+              <span class="tag">Discord Webhooks</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Web & Database Fundamentals</h3>
+            <div class="tags">
+              <span class="tag">HTTP Requests</span>
+              <span class="tag">Request Headers</span>
+              <span class="tag">HTML</span>
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">SQL</span>
+              <span class="tag">phpMyAdmin</span>
+              <span class="tag">CRUD</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Android & Mobile Lab Exploration</h3>
+            <div class="tags">
+              <span class="tag">ADB</span>
+              <span class="tag">Termux</span>
+              <span class="tag">Magisk</span>
+              <span class="tag">iptables</span>
+              <span class="tag">APKTool</span>
+              <span class="tag">Android Network Controls</span>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="reveal" style="color:var(--muted);font-size:.86rem;margin-top:20px">
+          Skills reflect tools and concepts explored through hands-on labs, coursework and independent practice. Proficiency continues to develop through practical work.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section id="projects" class="divider">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">03 / Projects</div>
+            <h2>Labs and things I have built.</h2>
+          </div>
+          <div class="section-number">03</div>
+        </div>
+
+        <div class="projects">
+
+          <article class="project reveal">
+
+            <div class="project-meta">WINDOWS DOMAIN LAB · NETWORK SECURITY</div>
+
+            <h3>Active Directory & NTLM Attack Lab</h3>
+
+            <p>
+              A controlled lab for understanding Windows domain authentication, SMB shares and common NTLM-related security risks.
+            </p>
+
+            <ul>
+              <li>Configured a Windows domain lab using the <code>africahackon.local</code> environment.</li>
+              <li>Practised SMB share configuration and examined NTLM authentication.</li>
+              <li>Used Responder in the lab to study name-resolution and authentication behaviour.</li>
+              <li>Documented Pass-the-Hash concepts and analysed network traffic with Wireshark.</li>
+            </ul>
+
+            <div class="tags">
+              <span class="tag">Active Directory</span>
+              <span class="tag">NTLM</span>
+              <span class="tag">SMB</span>
+              <span class="tag">Responder</span>
+              <span class="tag">Wireshark</span>
+            </div>
+
+            <p style="margin-top:18px">
+              <a class="btn btn-secondary" href="https://github.com/amoskim318/Active-Directory-NTLM-Attack-Lab" target="_blank" rel="noopener noreferrer">
+                View on GitHub ↗
+              </a>
+            </p>
+
+          </article>
+
+          <article class="project reveal">
+
+            <div class="project-meta">PYTHON · RECONNAISSANCE AUTOMATION</div>
+
+            <h3>Subdomain Discovery & Notification Script</h3>
+
+            <p>
+              A small automation project that combines command-line security tools and sends notifications when results are available.
+            </p>
+
+            <ul>
+              <li>Used Subfinder to discover subdomains for a practice target.</li>
+              <li>Used httpx to identify responding web services.</li>
+              <li>Saved discovered and live hosts into separate output files.</li>
+              <li>Created a Python notification script that sends results to a Discord webhook.</li>
+            </ul>
+
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Subfinder</span>
+              <span class="tag">httpx</span>
+              <span class="tag">Discord Webhook</span>
+            </div>
+
+          </article>
+
+          <article class="project reveal">
+
+            <div class="project-meta">DEFENSIVE MONITORING · DOCKER</div>
+
+            <h3>Wazuh Single-Node Lab</h3>
+
+            <p>
+              Deployed a local Wazuh environment to explore security monitoring and the components involved in a host-based monitoring stack.
+            </p>
+
+            <ul>
+              <li>Ran the Wazuh single-node deployment with Docker.</li>
+              <li>Worked with the dashboard, manager and indexer services.</li>
+              <li>Practised starting, stopping and managing the lab services.</li>
+            </ul>
+
+            <div class="tags">
+              <span class="tag">Wazuh</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Monitoring</span>
+            </div>
+
+          </article>
+
+          <article class="project reveal">
+
+            <div class="project-meta">MYSQL · PHP · APACHE</div>
+
+            <h3>Student Records Web Application</h3>
+
+            <p>
+              A local database-backed application built as a practical exercise in connecting a web interface to MySQL.
+            </p>
+
+            <ul>
+              <li>Created a MySQL database and students table.</li>
+              <li>Connected PHP pages to the database.</li>
+              <li>Implemented basic record listing, updating and deletion.</li>
+              <li>Ran the application locally using Apache and phpMyAdmin.</li>
+            </ul>
+
+            <div class="tags">
+              <span class="tag">MySQL</span>
+              <span class="tag">PHP</span>
+              <span class="tag">Apache</span>
+              <span class="tag">CRUD</span>
+            </div>
+
+          </article>
+
+        </div>
+
+        <p class="reveal" style="color:var(--muted);font-size:.86rem;margin-top:22px">
+          These are practical learning projects and controlled lab exercises. Project descriptions reflect the work completed in those environments.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+
+    <section id="education">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">04 / Education</div>
+            <h2>Learning journey.</h2>
+          </div>
+          <div class="section-number">04</div>
+        </div>
+
+        <div class="timeline reveal">
+
+          <div class="timeline-item">
+            <div class="timeline-date">2026 — PRESENT</div>
+            <h3>AfricaHackon — Cohort 7</h3>
+            <p>Practical cybersecurity training, technical assignments and hands-on lab work.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <h3>Kenya Certificate of Secondary Education (KCSE)</h3>
+            <p>Thingithu Secondary School · Nanyuki, Kenya</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">ONGOING</div>
+            <h3>Independent Technical Practice</h3>
+            <p>Self-directed study in networking, Linux, network security and defensive monitoring through home labs.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DEVELOPMENT -->
+
+    <section id="growth" class="divider">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">05 / Development</div>
+            <h2>Practice, documentation<br>& continuous learning.</h2>
+          </div>
+          <div class="section-number">05</div>
+        </div>
+
+        <div class="two-col">
+
+          <div class="list-card reveal">
+            <h3>Current learning areas</h3>
+            <ul class="clean-list">
+              <li>Network traffic analysis with Wireshark and tcpdump.</li>
+              <li>Network discovery and service enumeration with Nmap.</li>
+              <li>Linux system administration and firewall fundamentals.</li>
+              <li>Windows authentication, SMB and Active Directory lab concepts.</li>
+              <li>Security monitoring with Wazuh and Snort.</li>
+            </ul>
+          </div>
+
+          <div class="list-card reveal">
+            <h3>How I work</h3>
+            <ul class="clean-list">
+              <li>Build controlled environments to understand how systems behave.</li>
+              <li>Capture and inspect traffic instead of relying only on tool output.</li>
+              <li>Record commands, observations and lessons learned.</li>
+              <li>Publish selected technical documentation and projects on GitHub.</li>
+              <li>Keep developing practical skills through structured training and independent labs.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section id="contact">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div>
+            <div class="section-kicker">06 / Contact</div>
+            <h2>Let's connect.</h2>
+          </div>
+          <div class="section-number">06</div>
+        </div>
+
+        <div class="contact-wrap">
+
+          <div class="contact-copy reveal">
+
+            <p>
+              I am open to connecting with cybersecurity professionals, mentors, fellow learners and teams interested in practical network security. You can reach me through email or my social platforms.
+            </p>
+
+            <div class="contact-links">
+
+              <a class="contact-link" href="mailto:amoskim028@gmail.com">
+                <span>Email</span>
+                <strong>amoskim028@gmail.com ↗</strong>
+              </a>
+
+              <a class="contact-link" href="https://github.com/amoskim318" target="_blank" rel="noopener noreferrer">
+                <span>GitHub</span>
+                <strong>amoskim318 ↗</strong>
+              </a>
+
+              <a class="contact-link" href="https://www.linkedin.com/in/amos-kimunya-4287543bb/" target="_blank" rel="noopener noreferrer">
+                <span>LinkedIn</span>
+                <strong>View LinkedIn Profile ↗</strong>
+              </a>
+
+              <a class="contact-link" href="https://www.facebook.com/profile.php?id=61591694542061" target="_blank" rel="noopener noreferrer">
+                <span>Facebook</span>
+                <strong>View Facebook Profile ↗</strong>
+              </a>
+
+            </div>
+          </div>
+
+          <form class="reveal" id="contactForm">
+
+            <label for="name">YOUR NAME</label>
+            <input id="name" type="text" placeholder="Your name" required>
+
+            <label for="email">YOUR EMAIL</label>
+            <input id="email" type="email" placeholder="you@example.com" required>
+
+            <label for="message">MESSAGE</label>
+            <textarea id="message" placeholder="Write your message..." required></textarea>
+
+            <button class="btn btn-primary" type="submit">
+              Send Message →
+            </button>
+
+            <p style="font-size:.76rem;color:var(--muted);margin:12px 0 0">
+              This opens your email application with the message prepared.
+            </p>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      Designed & built for Amos Kimunya · <span id="year"></span>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // Animated role text
+
+    const roles = [
+      "Cybersecurity Learner",
+      "Network Security Focus",
+      "Linux & Networking",
+      "Hands-on Lab Builder"
+    ];
+
+    const typed = document.getElementById("typedText");
+
+    let r = 0;
+    let c = 0;
+    let deleting = false;
+
+    function type() {
+      const word = roles[r];
+
+      typed.textContent = word.slice(0, c);
+
+      if (!deleting && c < word.length) {
+        c++;
+        setTimeout(type, 55);
+      } else if (!deleting) {
+        deleting = true;
+        setTimeout(type, 1200);
+      } else if (c > 0) {
+        c--;
+        setTimeout(type, 28);
+      } else {
+        deleting = false;
+        r = (r + 1) % roles.length;
+        setTimeout(type, 250);
+      }
+    }
+
+    type();
+
+
+    // Mobile navigation
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(open));
+    });
+
+    navLinks.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+
+    // Navigation background on scroll
+
+    const nav = document.getElementById("navbar");
+
+    window.addEventListener("scroll", () => {
+      nav.classList.toggle("scrolled", scrollY > 12);
+    });
+
+
+    // Reveal animations
+
+    if ("IntersectionObserver" in window) {
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("show");
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: .12 });
+
+      document.querySelectorAll(".reveal").forEach(el => {
+        observer.observe(el);
+      });
+
+    } else {
+
+      document.querySelectorAll(".reveal").forEach(el => {
+        el.classList.add("show");
+      });
+
+    }
+
+
+    // Active navigation section
+
+    const sections = [...document.querySelectorAll("main section")];
+    const links = [...document.querySelectorAll(".nav-links a")];
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach(s => {
+        if (scrollY >= s.offsetTop - 150) {
+          current = s.id;
+        }
+      });
+
+      links.forEach(a => {
+        a.classList.toggle(
+          "active",
+          a.getAttribute("href") === "#" + current
+        );
+      });
+
+    });
+
+
+    // Contact form
+
+    document.getElementById("contactForm").addEventListener("submit", e => {
+
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const msg = document.getElementById("message").value;
+
+      const subject = encodeURIComponent(
+        "Portfolio message from " + name
+      );
+
+      const body = encodeURIComponent(
+        "Name: " + name +
+        "\nEmail: " + email +
+        "\n\n" + msg
+      );
+
+      window.location.href =
+        `mailto:amoskim028@gmail.com?subject=${subject}&body=${body}`;
+
+    });
+
+
+    // Automatic footer year
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
